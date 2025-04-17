@@ -12,9 +12,10 @@ Some context: Within my Taiko group, we have a tradition of taking pictures _(sn
 - Statistics tracking (# of snipes, # of sniped) + database.
   - Leaderboard (maybe with charts / diagrams).
   - Fun statistics such as who snipes the most and who gets sniped the most.
-- Type of snipe (e.g. backshot--literally right behind them).
+- Optional parameter for type of snipe (e.g. backshot--literally right behind them).
 - Customizable(?) rules.
 - Option to opt out.
+- Shared data across different Taiko servers?
 - ...and more!
 ## 🚀 Setup / Deployment
 ### Prerequisites
