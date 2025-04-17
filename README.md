@@ -8,7 +8,7 @@ Some context: Within my Taiko group, we have a tradition of taking pictures _(sn
 - Command: `/snipe [user] [image]`
 
 ![Sniped Message](https://github.com/user-attachments/assets/d18865db-65e2-4c31-af76-00e7eb4a35a2)
-## 📝 Planned Features
+## 📝 Plans
 - Statistics tracking (# of snipes, # of sniped) + database.
   - Leaderboard (maybe with charts / diagrams).
   - Fun statistics such as who snipes the most and who gets sniped the most.
@@ -16,6 +16,7 @@ Some context: Within my Taiko group, we have a tradition of taking pictures _(sn
 - Customizable(?) rules.
 - Option to opt out.
 - Shared data across different Taiko servers?
+- Cleanup dependencies / requirements.txt.
 - ...and more!
 ## 🚀 Setup / Deployment
 ### Prerequisites
@@ -24,4 +25,4 @@ Some context: Within my Taiko group, we have a tradition of taking pictures _(sn
 ### Installation
 1. Clone repo and cd into the folder.
 2. Install dependencies with `pip install -r requirements.txt`.
-3. Run the bot with `python3 main.py`.  
+3. Run the bot with `python3 bot.py`.  
