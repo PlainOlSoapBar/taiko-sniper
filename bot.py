@@ -5,7 +5,12 @@ import asyncio
 from db.database import setup_database
 from config import TOKEN, GUILD_ID, COMMAND_PREFIX
 
-setup_logger()
+# These two lines are for server-hosting this bot. Comment out if you're running the bot locally.
+from keep_alive import keep_alive
+keep_alive()
+
+# Comment this out if the bot is being server-hosted.
+# setup_logger()
 
 class TaikoSniper(commands.Bot):
     async def on_ready(self):

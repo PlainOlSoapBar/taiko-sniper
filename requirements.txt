@@ -1,12 +1,4 @@
-aiohappyeyeballs
-aiohttp
-aiosignal
 aiosqlite
-attrs
 discord.py==2.5.2
-frozenlist
-idna
-multidict
-propcache
 python-dotenv
-yarl
+Flask
