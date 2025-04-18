@@ -1,6 +1,7 @@
 aiohappyeyeballs
 aiohttp
 aiosignal
+aiosqlite
 attrs
 discord.py==2.5.2
 frozenlist

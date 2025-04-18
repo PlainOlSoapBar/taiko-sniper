@@ -2,8 +2,8 @@ import discord
 from discord.ext import commands
 from utils.logger import setup_logger
 import asyncio
+from db.database import setup_database
 from config import TOKEN, GUILD_ID, COMMAND_PREFIX
-
 
 setup_logger()
 
@@ -26,6 +26,7 @@ async def load_extensions():
     await bot.load_extension("cogs.snipe")
 
 async def main():
+    await setup_database()
     await load_extensions()
     await bot.start(TOKEN)
 
