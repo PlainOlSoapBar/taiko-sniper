@@ -14,6 +14,9 @@ class Snipe(commands.Cog):
         name="snipe",
         description="Snipe a member!",
     )
+    @app_commands.describe(
+        user="The user you are sniping.", image="Proof of your snipe."
+    )
     async def snipe(
         self,
         interaction: discord.Interaction,
@@ -23,25 +26,25 @@ class Snipe(commands.Cog):
         # Increase user's snipes count by 1
         db = await get_db()
         await db.execute(
-                """
+            """
             INSERT INTO user_data (user_id, snipes)
             VALUES (?, 1)
             ON CONFLICT(user_id) DO UPDATE SET snipes = snipes + 1
         """,
-                (interaction.user.id),
-            )
+            (interaction.user.id,),
+        )
         await db.commit()
 
         # Increase receiver's sniped count by 1
         db = await get_db()
         await db.execute(
-                """
+            """
             INSERT INTO user_data (user_id, sniped)
             VALUES (?, 1)
             ON CONFLICT(user_id) DO UPDATE SET sniped = sniped + 1
         """,
-                (user.id),
-            )
+            (user.id,),
+        )
         await db.commit()
 
         embed = discord.Embed(
@@ -53,6 +56,9 @@ class Snipe(commands.Cog):
     @app_commands.command(
         name="stats",
         description="See statistics of yourself or another member.",
+    )
+    @app_commands.describe(
+        user="The user whose stats you want to display. Leave empty to see your own stats."
     )
     async def stats(
         self, interaction: discord.Interaction, user: Optional[discord.User] = None
@@ -69,8 +75,8 @@ class Snipe(commands.Cog):
         if row:
             snipes, sniped = row
             embed = discord.Embed(
-                title=f"📊 Stats for {target_user.display_name}",
-                description=f"Snipes: `{snipes}`\nSniped: `{sniped}`",
+                title=f"📊 Stats for {target_user.display_name} 📊",
+                description=f"📸 Snipes: `{snipes}`\n⚰️ Sniped: `{sniped}`",
                 color=discord.Color.blue(),
             )
         else:

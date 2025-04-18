@@ -8,7 +8,7 @@ Some context: Within my Taiko group, we have a tradition of taking pictures _(sn
 - Command: `/snipe [user] [image]`
 
 ![Sniped Message](https://github.com/user-attachments/assets/d18865db-65e2-4c31-af76-00e7eb4a35a2)
-## 📝 Planned Features
+## 📝 Plans
 - /help command.
 - Statistics tracking (# of snipes, # of sniped) + database.
   - Leaderboard (maybe with charts / diagrams).
@@ -17,7 +17,6 @@ Some context: Within my Taiko group, we have a tradition of taking pictures _(sn
 - Customizable(?) rules.
 - Option to opt out.
 - Shared data across different Taiko servers?
-- ...and more!
 ## 🚀 Setup / Deployment
 ### Prerequisites
 - Discord Bot Token (Refer to this [guide](https://discordpy.readthedocs.io/en/stable/discord.html))
