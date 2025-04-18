@@ -1,5 +1,8 @@
 import logging
 import logging.handlers
+import os
+
+FILE_PATH = os.path.join(os.path.dirname(__file__), 'run.log')
 
 
 def setup_logger():
@@ -8,7 +11,7 @@ def setup_logger():
     logging.getLogger("discord.http").setLevel(logging.INFO)
 
     handler = logging.handlers.RotatingFileHandler(
-        filename="discord.log",
+        filename=FILE_PATH,
         encoding="utf-8",
         maxBytes=32 * 1024 * 1024,
         backupCount=5,
