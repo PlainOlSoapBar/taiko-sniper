@@ -1,39 +1,38 @@
 import discord
 from discord.ext import commands
-from config import TOKEN, GUILD_ID
 from utils.logger import setup_logger
+import asyncio
+from config import TOKEN, GUILD_ID, COMMAND_PREFIX
+
 
 setup_logger()
 
-intents = discord.Intents.default()
-intents.message_content = True
+class TaikoSniper(commands.Bot):
+    async def on_ready(self):
+        print(f"Logged in as {self.user}")
 
-bot = commands.Bot(command_prefix="/", intents=intents)
+        try:
+            guild = discord.Object(id=GUILD_ID)
+            synced = await self.tree.sync(guild=guild)
+            await self.change_presence(
+                activity=discord.Game(f"{self.command_prefix}snipe"),
+            )
+            print(f"Synced {len(synced)} commands to Guild {guild.id}")
 
-
-@bot.event
-async def on_ready():
-    print(f"Logged in as {bot.user}")
-
-    try:
-        guild = discord.Object(id=GUILD_ID)
-        synced = await bot.tree.sync(guild=guild)
-        print(f"Synced {len(synced)} commands to Guild {guild.id}")
-
-    except Exception as e:
-        print(f"Error syncing commands: {e}")
-
+        except Exception as e:
+            print(f"Error syncing commands: {e}")
 
 async def load_extensions():
     await bot.load_extension("cogs.snipe")
-
-
-import asyncio
-
 
 async def main():
     await load_extensions()
     await bot.start(TOKEN)
 
+intents = discord.Intents.default()
+intents.message_content = True
 
-asyncio.run(main())
+bot = TaikoSniper(command_prefix=COMMAND_PREFIX, intents=intents)
+
+if __name__ == "__main__":
+    asyncio.run(main())

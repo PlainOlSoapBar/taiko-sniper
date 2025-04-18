@@ -9,6 +9,7 @@ Some context: Within my Taiko group, we have a tradition of taking pictures _(sn
 
 ![Sniped Message](https://github.com/user-attachments/assets/d18865db-65e2-4c31-af76-00e7eb4a35a2)
 ## 📝 Planned Features
+- /help command.
 - Statistics tracking (# of snipes, # of sniped) + database.
   - Leaderboard (maybe with charts / diagrams).
   - Fun statistics such as who snipes the most and who gets sniped the most.
