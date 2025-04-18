@@ -5,10 +5,6 @@ import asyncio
 from db.database import setup_database
 from config import TOKEN, GUILD_ID, COMMAND_PREFIX
 
-# These two lines are for server-hosting this bot. Comment out if you're running the bot locally.
-from keep_alive import keep_alive
-keep_alive()
-
 # Comment this out if the bot is being server-hosted.
 # setup_logger()
 
@@ -39,6 +35,10 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 bot = TaikoSniper(command_prefix=COMMAND_PREFIX, intents=intents)
+
+# These two lines are for server-hosting this bot. Comment out if you're running the bot locally.
+from keep_alive import keep_alive
+keep_alive()
 
 if __name__ == "__main__":
     asyncio.run(main())
