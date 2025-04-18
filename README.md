@@ -40,4 +40,5 @@ Some context: Within my Taiko group, we have a tradition of taking pictures _(sn
 ### Installation
 1. Clone repo and cd into the folder.
 2. Install dependencies with `pip install -r requirements.txt`.
-3. Run the bot with `python3 bot.py`.  
+3. Populate the `.env` file.
+4. Run the bot with `python3 main.py`.  

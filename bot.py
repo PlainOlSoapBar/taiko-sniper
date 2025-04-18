@@ -14,7 +14,8 @@ class TaikoSniper(commands.Bot):
 
         try:
             guild = discord.Object(id=GUILD_ID)
-            synced = await self.tree.sync(guild=guild)
+            synced = await self.tree.sync() # Global sync (takes up to an hour to propagate)
+            synced = await self.tree.sync(guild=guild) # Guild specific sync
             await self.change_presence(
                 activity=discord.Game(f"{self.command_prefix}snipe"),
             )
