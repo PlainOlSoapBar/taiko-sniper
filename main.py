@@ -1,4 +1,3 @@
-from keep_alive import keep_alive
 from bot import bot
 from db.database import setup_database
 import asyncio
@@ -15,5 +14,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    keep_alive()
     asyncio.run(main())
