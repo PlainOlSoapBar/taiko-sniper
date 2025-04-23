@@ -59,10 +59,13 @@ class Snipe(commands.Cog):
         description="See statistics of yourself or another member.",
     )
     @app_commands.describe(
-        user="The user whose stats you want to display. Leave empty to see your own stats."
+        user="The user whose stats you want to display. Leave empty to see your own stats.", private="Privately display stats. Default: True"
     )
     async def stats(
-        self, interaction: discord.Interaction, user: Optional[discord.User] = None
+        self,
+        interaction: discord.Interaction,
+        user: Optional[discord.User] = None,
+        private: Optional[bool] = True,
     ):
         target_user = user or interaction.user
 
@@ -87,9 +90,11 @@ class Snipe(commands.Cog):
                 color=discord.Color.dark_gray(),
             )
 
-        embed.set_image(url=target_user.display_avatar.url)
+        if not private:
+            await interaction.response.send_message(embed=embed)
+            return
 
-        await interaction.response.send_message(embed=embed)
+        await interaction.response.send_message(embed=embed, ephemeral=True)
 
     # Admin only commands
     @app_commands.command(
