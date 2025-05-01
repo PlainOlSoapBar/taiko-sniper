@@ -13,15 +13,20 @@ Some context: Within my Taiko group, we have a tradition of taking pictures _(sn
   - Requires an image as proof of the snipe.
 
 ![Sniped Message](https://github.com/user-attachments/assets/d18865db-65e2-4c31-af76-00e7eb4a35a2)
+
+  - `/unsnipe [user]` command for accidental snipes.
+    - Currently admin-only and unsnipes from the command user's perspective, but I will likely adjust this in the future.
 </details>
 <details>
 <summary> Statistics </summary>
 
  ‎ 
-  - Command: `/stats [user*]`
+  - Command: `/stats [user*] [private*]`
   - Displays how many times a member has sniped or has been sniped.
 
-![Statistics Message](https://github.com/user-attachments/assets/cf908895-98ff-4f29-b268-b04c22abe54a)
+![Statistics Message](https://github.com/user-attachments/assets/8c9ec226-188a-45ad-a8cc-0012addbf14a)
+
+  - By default, it is an ephemeral response, but the private argument can toggle it.
 </details>
 
 ## 📝 Plans
