@@ -2,8 +2,6 @@
 太鼓（たいこ）の　狙撃（そげき）  
 Taiko meaning drum, sogeki meaning sniping.  
 ## 🎯 About
-Don-chan quit his job as a Taiko Master and became the ultimate sniper. As a side-hustle, he helps Collegiate Taiko groups keep track of sniping statistics for each member.
-
 Within my Taiko group, we have a tradition of taking pictures _(sniping)_ of other members without their knowledge whenever we see them in public _(don't worry, we all consent to this)_. Introducing Taiko Sniper, a Discord bot that allows members to snipe each other while having their statistics tracked!  
 ## 🔧 Features / Previews
 [ ] indicates argument, * indicates optional
@@ -57,9 +55,11 @@ python main.py
 ```bash
 nohup python main.py &
 ```
-3. Stop the bot via killing its process ID.
+3. If you use the 2nd option, stop the bot by killing its process ID.
 ```bash
 ps aux | grep main.py
+```
+```bash
 kill [process id]
 ```
 
