@@ -9,6 +9,9 @@ class Snipe(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # ============================
+    # Snipe Command
+    # ============================
     @app_commands.command(
         name="snipe",
         description="Snipe a member!",
@@ -46,14 +49,35 @@ class Snipe(commands.Cog):
         )
         await db.commit()
 
+        # Retrieve snipes for the command user
+        db = await get_db()
+        async with db.execute(
+            "SELECT snipes FROM user_data WHERE user_id = ?",
+            (interaction.user.id,),
+        ) as cursor:
+            snipes_row = await cursor.fetchone()
+        snipes = snipes_row[0] if snipes_row else 0
+
+        # Retrieve sniped for the target user
+        async with db.execute(
+            "SELECT sniped FROM user_data WHERE user_id = ?",
+            (user.id,),
+        ) as cursor:
+            sniped_row = await cursor.fetchone()
+        sniped = sniped_row[0] if sniped_row else 0
+
+        # Send message
         embed = discord.Embed(
             title=f"{interaction.user.display_name} ▄︻デ══━一 {user.display_name}!",
+            description=f"{interaction.user.mention} now has {snipes} snipes!\n{user.mention} has been sniped {sniped} time(s)!",
             color=discord.Color.red(),
         )
         embed.set_image(url=image.url)
         await interaction.response.send_message(embed=embed)
 
-    # Admin only commands
+    # ============================
+    # Unsnipe Command (ADMIN)
+    # ============================
     @app_commands.command(
         name="unsnipe",
         description="Made a mistake? Unsnipe a member. Admin priviledges required.",
@@ -106,7 +130,6 @@ class Snipe(commands.Cog):
     async def cog_load(self):
         guild = discord.Object(id=GUILD_ID)
         self.bot.tree.add_command(self.snipe, guild=guild)
-        self.bot.tree.add_command(self.stats, guild=guild)
         self.bot.tree.add_command(self.unsnipe, guild=guild)
 
 async def setup(bot):

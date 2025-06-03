@@ -10,6 +10,9 @@ class Stats(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # ============================
+    # Stats Command
+    # ============================
     @app_commands.command(
         name="stats",
         description="See statistics of yourself or another member.",
