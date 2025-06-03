@@ -5,6 +5,7 @@ from config import TOKEN
 
 async def load_extensions():
     await bot.load_extension("cogs.snipe")
+    await bot.load_extension("cogs.stats")
 
 
 async def main():
