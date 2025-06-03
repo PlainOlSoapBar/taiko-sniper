@@ -3,7 +3,7 @@ from discord.ext import commands
 from utils.logger import setup_logger
 import asyncio
 from db.database import setup_database
-from config import GUILD_ID, COMMAND_PREFIX
+from config import GUILD_ID, COMMAND_PREFIX, DEVELOPER_MODE
 
 # Comment this out if the bot is being server-hosted.
 # setup_logger()
@@ -12,12 +12,17 @@ class TaikoSniper(commands.Bot):
     async def on_ready(self):
         print(f"Logged in as {self.user}")
 
+        if DEVELOPER_MODE:
+            message = "Under Development 🛠️"
+        else:
+            message = "▄︻デ══━一 {self.command_prefix}snipe"
+
         try:
             guild = discord.Object(id=GUILD_ID)
             synced = await self.tree.sync() # Global sync (takes up to an hour to propagate)
             synced = await self.tree.sync(guild=guild) # Guild specific sync
             await self.change_presence(
-                activity=discord.Game(f"▄︻デ══━一 {self.command_prefix}snipe"),
+                activity=discord.Game(f"{message}"),
             )
             print(f"Synced {len(synced)} commands to Guild {guild.id}")
 
