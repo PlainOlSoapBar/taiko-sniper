@@ -51,7 +51,7 @@ pip install -r requirements.txt
 ### Running the bot
 1. Run the bot directly.
 ```bash
-python3 main.py
+python main.py
 ```
 2. Alternatively, run the bot in the background.
 ```bash
