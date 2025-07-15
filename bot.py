@@ -3,7 +3,8 @@ from discord.ext import commands
 from config import GUILD_ID, COMMAND_PREFIX
 
 # Comment this out if the bot is being server-hosted.
-# setup_logger()
+from utils.logger import setup_logger
+setup_logger()
 
 class TaikoSniper(commands.Bot):
     async def on_ready(self):
