@@ -72,8 +72,8 @@ class Snipe(commands.Cog):
             description=f"{interaction.user.mention} now has {snipes} snipes!\n{user.mention} has been sniped {sniped} time(s)!",
             color=discord.Color.red(),
         )
-        embed.set_image(url=image.url)
-        await interaction.response.send_message(embed=embed)
+        await interaction.response.send_message(content=None, file=await image.to_file())
+        await interaction.followup.send(embed=embed)
 
     # ============================
     # Unsnipe Command (ADMIN)
