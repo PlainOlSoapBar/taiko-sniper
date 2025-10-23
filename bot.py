@@ -1,10 +1,10 @@
 import discord
 from discord.ext import commands
-from config import GUILD_ID, COMMAND_PREFIX
+from config import GUILD_ID, COMMAND_PREFIX, MODE
 
-# Comment this out if the bot is being server-hosted.
-from utils.logger import setup_logger
-setup_logger()
+if (MODE == 'DEV'):
+    from utils.logger import setup_logger
+    setup_logger()
 
 class TaikoSniper(commands.Bot):
     async def on_ready(self):
@@ -12,8 +12,10 @@ class TaikoSniper(commands.Bot):
 
         try:
             guild = discord.Object(id=GUILD_ID)
-            synced = await self.tree.sync() # Global sync (takes up to an hour to propagate)
-            synced = await self.tree.sync(guild=guild) # Guild specific sync
+            if (MODE == 'DEV'):
+                synced = await self.tree.sync(guild=guild) # Guild specific sync
+            else:
+                synced = await self.tree.sync() # Global sync (takes up to an hour to propagate)
             await self.change_presence(
                 activity=discord.Game(f"▄︻デ══━一 {self.command_prefix}snipe"),
             )
