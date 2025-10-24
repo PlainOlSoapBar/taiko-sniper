@@ -5,6 +5,7 @@ from config import GUILD_ID
 from db.database import get_db
 from typing import Optional
 
+
 class Stats(commands.Cog):
     def __init__(self, bot):
         self.bot = bot

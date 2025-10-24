@@ -7,6 +7,7 @@ async def load_extensions():
     await bot.load_extension("cogs.snipe")
     await bot.load_extension("cogs.stats")
     await bot.load_extension("cogs.help")    
+    await bot.load_extension("cogs.consent")
 
 async def main():
     await setup_database()

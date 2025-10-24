@@ -16,7 +16,8 @@ async def setup_database():
             CREATE TABLE IF NOT EXISTS user_data (
                 user_id INTEGER PRIMARY KEY,
                 snipes INTEGER DEFAULT 0,
-                sniped INTEGER DEFAULT 0
+                sniped INTEGER DEFAULT 0,
+                consented BOOLEAN DEFAULT FALSE
             )
             """
         )
