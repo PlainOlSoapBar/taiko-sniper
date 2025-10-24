@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from config import GUILD_ID, COMMAND_PREFIX, MODE
+from config import COMMAND_PREFIX, MODE
 
 if (MODE == 'DEV'):
     from utils.logger import setup_logger
