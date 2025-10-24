@@ -40,7 +40,7 @@ class Stats(commands.Cog):
             kd = snipes / sniped if sniped > 0 else float('inf')
             embed = discord.Embed(
                 title=f"📊 Stats for {target_user.display_name} 📊",
-                description=f"📸 Snipes: `{snipes}`\n⚰️ Sniped: `{sniped}`\n🎯 K/D: `{kd}`",
+                description=f"📸 Snipes: `{snipes}`\n⚰️ Sniped: `{sniped}`\n🎯 K/D: `{kd:.2f}`",
                 color=discord.Color.blue(),
             )
         else:
