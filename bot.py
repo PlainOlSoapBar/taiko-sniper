@@ -11,15 +11,11 @@ class TaikoSniper(commands.Bot):
         print(f"Logged in as {self.user}")
 
         try:
-            guild = discord.Object(id=GUILD_ID)
-            if (MODE == 'DEV'):
-                synced = await self.tree.sync(guild=guild) # Guild specific sync
-            else:
-                synced = await self.tree.sync() # Global sync (takes up to an hour to propagate)
+            synced = await self.tree.sync()
+            print(f"Synced {len(synced)} commands to Discord")
             await self.change_presence(
                 activity=discord.Game(f"▄︻デ══━一 {self.command_prefix}snipe"),
             )
-            print(f"Synced {len(synced)} commands to Guild {guild.id}")
 
         except Exception as e:
             print(f"Error syncing commands: {e}")
