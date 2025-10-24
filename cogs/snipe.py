@@ -3,7 +3,6 @@ from discord import app_commands
 from discord.ext import commands
 from config import GUILD_ID
 from db.database import get_db
-from typing import Optional
 
 class Snipe(commands.Cog):
     def __init__(self, bot):
@@ -25,6 +24,24 @@ class Snipe(commands.Cog):
         user: discord.User,
         image: discord.Attachment,
     ):
+        # Prevent sniping yourself or bots
+        if (interaction.user.id == user.id):
+            embed = discord.Embed(
+                title="Invalid snipe!",
+                description="You can't snipe yourself, silly!",
+                color=discord.Color.red(),
+            )
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+        if (user.bot):
+            embed = discord.Embed(
+                title="Invalid snipe!",
+                description="You can't snipe non-humans, silly!",
+                color=discord.Color.red(),
+            )
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+
         # Increase user's snipes count by 1
         db = await get_db()
         await db.execute(
