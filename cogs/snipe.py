@@ -197,7 +197,7 @@ class Snipe(commands.Cog):
             """
             INSERT INTO user_data (user_id, sniped)
             VALUES (?, 1)
-            ON CONFLICT(user_id) DO UPDATE SET sniped = MAX(snipes - 1, 0)
+            ON CONFLICT(user_id) DO UPDATE SET sniped = MAX(sniped - 1, 0)
         """,
             (user.id,),
         )
