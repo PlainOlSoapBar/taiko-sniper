@@ -14,7 +14,7 @@ def setup_logger():
         filename=FILE_PATH,
         encoding="utf-8",
         maxBytes=32 * 1024 * 1024,
-        backupCount=5,
+        backupCount=1,
     )
     formatter = logging.Formatter(
         "[{asctime}] [{levelname:<8}] {name}: {message}",
