@@ -50,6 +50,42 @@ class Snipe(commands.Cog):
             await interaction.response.send_message(embed=embed, ephemeral=True)
             return
 
+        # Prevent sniping if either members have not given consent
+        # This is not necessary for /unsnipe imo
+        db = await get_db()
+        async with db.execute(
+            "SELECT consent FROM user_data WHERE user_id = ?",
+            (interaction.user.id,),
+        ) as cursor:
+            sniper_consent_row = await cursor.fetchone()
+        sniper_consent = sniper_consent_row[0] if sniper_consent_row else 0
+
+        if sniper_consent == 0:
+            embed = discord.Embed(
+                title="Invalid snipe!",
+                description="You cannot snipe without giving consent with `/consent`.",
+                color=discord.Color.red(),
+            )
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+
+        db = await get_db()
+        async with db.execute(
+            "SELECT consent FROM user_data WHERE user_id = ?",
+            (user.id,),
+        ) as cursor:
+            target_consent_row = await cursor.fetchone()
+        target_consent = target_consent_row[0] if target_consent_row else 0
+
+        if target_consent == 0:
+            embed = discord.Embed(
+                title="Invalid snipe!",
+                description="The member you are trying to snipe has not given consent with `/consent`.",
+                color=discord.Color.red(),
+            )
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+
         # Increase user's snipes count by 1
         db = await get_db()
         await db.execute(
