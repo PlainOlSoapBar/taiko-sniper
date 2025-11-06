@@ -1,9 +1,12 @@
-# 太鼓の狙撃 - Taiko Sniper Discord Bot
-太鼓（たいこ）の　狙撃（そげき）  
-Taiko meaning drum, sogeki meaning sniping.  
-## 🎯 About
-Within my Taiko group, we have a tradition of taking pictures _(sniping)_ of other members without their knowledge whenever we see them in public _(don't worry, we all consent to this)_. Introducing Taiko Sniper, a Discord bot that allows members to snipe each other while having their statistics tracked!  
-## 🔧 Key Features / Previews
+# ▄︻デ══━一
+太鼓 (たいこ) の 狙撃 (そげき)  
+Taiko meaning drum, sogeki meaning sniping.
+## About
+> Don-chan quit his job as a Taiko Master and became the ultimate sniper.  
+> As a side-hustle, he helps Collegiate Taiko groups keep track of sniping statistics for each member.
+
+Within my Taiko group, we have a tradition of taking pictures (sniping) of other members without their knowledge whenever we see them in public (obviously with consent). This Discord bot allows members to snipe each other while having their statistics tracked!  
+## Example Features / Previews
 [ ] indicates argument, * indicates optional
 <details>
 <summary> Snipe </summary>
@@ -46,7 +49,7 @@ Within my Taiko group, we have a tradition of taking pictures _(sniping)_ of oth
   - Technically will grant immunity to sniping, but I hope that by honor code people won't abuse this.
 </details>
 
-## 🚀 Setup / Deployment
+## Setup / Deployment
 ### Prerequisites
 - Discord Bot Token (Refer to this [guide](https://discordpy.readthedocs.io/en/stable/discord.html))
 - Python (Tested on 3.11.3)
