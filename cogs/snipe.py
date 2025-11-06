@@ -85,6 +85,16 @@ class Snipe(commands.Cog):
             )
             await interaction.response.send_message(embed=embed, ephemeral=True)
             return
+        
+        # Check if image size is within acceptable limits (10 MB)
+        if (image.size / 1024 / 1024) > 10:
+            embed = discord.Embed(
+                title="Invalid snipe!",
+                description="The image file size is too high! Max is 10MB.",
+                color=discord.Color.red(),
+            )
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
 
         # Increase user's snipes count by 1
         db = await get_db()
