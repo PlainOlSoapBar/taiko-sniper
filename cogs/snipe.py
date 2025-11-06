@@ -4,6 +4,14 @@ from discord.ext import commands
 from config import GUILD_ID
 from db.database import get_db
 
+# Check if the user has admin
+# if not interaction.user.guild_permissions.administrator:
+#     await interaction.response.send_message(
+#         "You do not have permission to use this command.", ephemeral=True
+#     )
+#     return
+
+
 class Snipe(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -25,7 +33,7 @@ class Snipe(commands.Cog):
         image: discord.Attachment,
     ):
         # Prevent sniping yourself or bots
-        if (interaction.user.id == user.id):
+        if interaction.user.id == user.id:
             embed = discord.Embed(
                 title="Invalid snipe!",
                 description="You can't snipe yourself, silly!",
@@ -33,7 +41,7 @@ class Snipe(commands.Cog):
             )
             await interaction.response.send_message(embed=embed, ephemeral=True)
             return
-        if (user.bot):
+        if user.bot:
             embed = discord.Embed(
                 title="Invalid snipe!",
                 description="You can't snipe non-humans, silly!",
@@ -89,31 +97,25 @@ class Snipe(commands.Cog):
             description=f"{interaction.user.mention} now has {snipes} snipes!\n{user.mention} has been sniped {sniped} time(s)!",
             color=discord.Color.red(),
         )
-        await interaction.response.send_message(content=None, file=await image.to_file())
+        await interaction.response.send_message(
+            content=None, file=await image.to_file()
+        )
         await interaction.followup.send(embed=embed)
 
     # ============================
-    # Unsnipe Command (ADMIN)
+    # Unsnipe Command
     # ============================
     @app_commands.command(
         name="unsnipe",
-        description="Made a mistake? Unsnipe a member. Admin priviledges required.",
+        description="Made a mistake? Unsnipe a member.",
     )
-    @app_commands.describe(
-        user="The user you are unsniping."
-    )
+    @app_commands.describe(user="The user you are unsniping.")
     async def unsnipe(
         self,
         interaction: discord.Interaction,
         user: discord.User,
     ):
-        # Check if the user has admin
-        if not interaction.user.guild_permissions.administrator:
-            await interaction.response.send_message(
-                "You do not have permission to use this command.", ephemeral=True
-            )
-            return
-        
+
         # Decrease user's snipes count by 1
         db = await get_db()
         await db.execute(
@@ -148,6 +150,7 @@ class Snipe(commands.Cog):
         guild = discord.Object(id=GUILD_ID)
         self.bot.tree.add_command(self.snipe, guild=guild)
         self.bot.tree.add_command(self.unsnipe, guild=guild)
+
 
 async def setup(bot):
     await bot.add_cog(Snipe(bot))
