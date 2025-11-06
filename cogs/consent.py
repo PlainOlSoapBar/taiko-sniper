@@ -26,7 +26,8 @@ class Consent(commands.Cog):
             "SELECT consent FROM user_data WHERE user_id = ?",
             (interaction.user.id,),
         ) as cursor:
-            consent = await cursor.fetchone()
+            consent_row = await cursor.fetchone()
+            consent = consent_row[0] if consent_row else 0
         
         if (consent == 1): 
             embed = discord.Embed(
