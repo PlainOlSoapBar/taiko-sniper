@@ -17,8 +17,8 @@ Within my Taiko group, we have a tradition of taking pictures (sniping) of other
 
 <img width="507" alt="Sniped Message" src="https://github.com/user-attachments/assets/c67996ec-46e1-49c5-9bf2-0e635be73045" />
 
-  - `/unsnipe [user]` command for accidental snipes.
-    - Currently admin-only and unsnipes from the command user's perspective, but I will likely adjust this in the future.
+  - `/unsnipe [user]`
+    - Undos an accidental snipe.
 </details>
 <details>
 <summary> Statistics </summary>
@@ -39,14 +39,16 @@ Within my Taiko group, we have a tradition of taking pictures (sniping) of other
   - haven't started working on this
 </details>
 <details>
-<summary> Consent *WIP* </summary>
+<summary> Consent </summary>
 
  ‎ 
+  - Technically will grant immunity to sniping, but I hope that by honor code people won't abuse this.
   - `/consent`
     - Before participating, members need to "opt-in" by running this command. Otherwise, they will not be able to use the bot or be sniped.
   - `/unconsent`
     - Revokes consent.
-  - Technically will grant immunity to sniping, but I hope that by honor code people won't abuse this.
+  - `/checkconsent [user*]`
+    - Checks a user's consent status.
 </details>
 
 ## Setup / Deployment
