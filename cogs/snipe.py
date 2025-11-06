@@ -93,7 +93,7 @@ class Snipe(commands.Cog):
 
         # Send message
         embed = discord.Embed(
-            title=f"{interaction.user.display_name} ▄︻デ══━一 {user.display_name}!",
+            title=f"{interaction.user.display_name} ▄︻デ══━一 {user.display_name}",
             description=f"{interaction.user.mention} now has {snipes} snipes!\n{user.mention} has been sniped {sniped} time(s)!",
             color=discord.Color.red(),
         )
@@ -109,12 +109,29 @@ class Snipe(commands.Cog):
         name="unsnipe",
         description="Made a mistake? Unsnipe a member.",
     )
-    @app_commands.describe(user="The user you are unsniping.")
+    @app_commands.describe(user="The member you are unsniping.")
     async def unsnipe(
         self,
         interaction: discord.Interaction,
         user: discord.User,
     ):
+        # Prevent unsniping yourself or bots
+        if interaction.user.id == user.id:
+            embed = discord.Embed(
+                title="Invalid unsnipe!",
+                description="You can't unsnipe yourself, silly!",
+                color=discord.Color.red(),
+            )
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+        if user.bot:
+            embed = discord.Embed(
+                title="Invalid unsnipe!",
+                description="You can't unsnipe non-humans, silly!",
+                color=discord.Color.red(),
+            )
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
 
         # Decrease user's snipes count by 1
         db = await get_db()
@@ -122,7 +139,7 @@ class Snipe(commands.Cog):
             """
             INSERT INTO user_data (user_id, snipes)
             VALUES (?, 1)
-            ON CONFLICT(user_id) DO UPDATE SET snipes = snipes - 1
+            ON CONFLICT(user_id) DO UPDATE SET snipes = MAX(snipes - 1, 0)
         """,
             (interaction.user.id,),
         )
@@ -134,7 +151,7 @@ class Snipe(commands.Cog):
             """
             INSERT INTO user_data (user_id, sniped)
             VALUES (?, 1)
-            ON CONFLICT(user_id) DO UPDATE SET sniped = sniped - 1
+            ON CONFLICT(user_id) DO UPDATE SET sniped = MAX(snipes - 1, 0)
         """,
             (user.id,),
         )
