@@ -178,6 +178,24 @@ class Snipe(commands.Cog):
             )
             await interaction.response.send_message(embed=embed, ephemeral=True)
             return
+        
+        # Prevent unsniping someone with zero snipeds
+        db = await get_db()
+        async with db.execute(
+            "SELECT sniped FROM user_data WHERE user_id = ?",
+            (user.id,),
+        ) as cursor:
+            sniped_row = await cursor.fetchone()
+            sniped = sniped_row[0] if sniped_row else 0
+
+        if sniped == 0:
+            embed = discord.Embed(
+                title="Invalid unsnipe!",
+                description="You can't unsnipe a member with zero snipeds!",
+                color=discord.Color.red(),
+            )
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
 
         # Decrease user's snipes count by 1
         db = await get_db()
