@@ -17,7 +17,7 @@ async def setup_database():
                 user_id INTEGER PRIMARY KEY,
                 snipes INTEGER DEFAULT 0,
                 sniped INTEGER DEFAULT 0,
-                consented BOOLEAN DEFAULT FALSE
+                consent BOOLEAN DEFAULT FALSE
             )
             """
         )
